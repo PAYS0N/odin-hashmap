@@ -20,3 +20,6 @@ puts "Has: \"hihi\" returns #{hash.has?('hihi')}"
 puts "Remove: \"erverte\" returns #{hash.remove('erverte')}"
 puts "Remove: \"hihi\" returns #{hash.remove('hihi')}"
 hash.display
+puts hash.length
+hash.clear
+hash.display

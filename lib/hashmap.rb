@@ -5,9 +5,11 @@ require_relative("linked_list")
 module OdinHashmap
   # string hashmap implementation
   class Hashmap
+    attr_reader :length
+
     def initialize
       @load_factor = 0.8
-      @entries = 0
+      @length = 0
       @capacity = 16
       create_buckets(@capacity)
     end
@@ -24,14 +26,14 @@ module OdinHashmap
     end
 
     def set(key, value)
-      @entries += 1
-      resize if @entries > @capacity * @load_factor
+      @length += 1
+      resize if @length > @capacity * @load_factor
       hash_v = hash(key)
       list = @buckets[hash_v]
       index = list.find_key(key)
       unless index.nil?
         list.remove_at(index)
-        @entries -= 1
+        @length -= 1
       end
       list.append([key, value])
     end
@@ -57,10 +59,14 @@ module OdinHashmap
       unless index.nil?
         val = list.at(index)[1]
         list.remove_at(index)
-        @entries -= 1
+        @length -= 1
         return val
       end
       nil
+    end
+
+    def clear
+      initialize
     end
 
     def resize
@@ -71,7 +77,7 @@ module OdinHashmap
       @capacity.times do |i|
         puts "Bucket #{i}: #{@buckets[i]}"
       end
-      puts "num of entries: #{@entries}"
+      puts "num of entries: #{@length}"
     end
   end
 end
