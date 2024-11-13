@@ -44,3 +44,4 @@ hash.set("jacket", "blue")
 hash.set("kite", "pink")
 hash.set("lion", "golden")
 hash.display
+puts "Hash: #{hash}"

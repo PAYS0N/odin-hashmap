@@ -115,5 +115,15 @@ module OdinHashmap
       end
       puts "num of entries: #{@length}"
     end
+
+    def to_s
+      arr = []
+      arr << "{"
+      entries.each do |key, value|
+        arr << "{\"#{key}\": #{value}}"
+      end
+      arr << "}"
+      arr.join
+    end
   end
 end
