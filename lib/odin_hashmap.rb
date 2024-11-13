@@ -17,6 +17,8 @@ puts "Key: \"hihi\" returns #{hash.get('hihi')}"
 puts "Has: \"My\" returns #{hash.has?('My')}"
 puts "Has: \"erverteev\" returns #{hash.has?('erverteev')}"
 puts "Has: \"hihi\" returns #{hash.has?('hihi')}"
+puts "Keys: #{hash.keys}"
+puts "Values: #{hash.values}"
 puts "Remove: \"erverte\" returns #{hash.remove('erverte')}"
 puts "Remove: \"hihi\" returns #{hash.remove('hihi')}"
 hash.display

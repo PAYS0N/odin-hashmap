@@ -92,6 +92,7 @@ module OdinLinkedList
     end
 
     def remove_at(index)
+      @size -= 1
       if index.zero?
         shift
       elsif index == (size)

@@ -65,6 +65,26 @@ module OdinHashmap
       nil
     end
 
+    def keys
+      key_list = []
+      @buckets.each do |list|
+        list.size.times do |i|
+          key_list.push(list.at(i)[0])
+        end
+      end
+      key_list
+    end
+
+    def values
+      key_list = []
+      @buckets.each do |list|
+        list.size.times do |i|
+          key_list.push(list.at(i)[1])
+        end
+      end
+      key_list
+    end
+
     def clear
       initialize
     end
