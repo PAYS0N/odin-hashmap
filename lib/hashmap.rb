@@ -76,13 +76,23 @@ module OdinHashmap
     end
 
     def values
-      key_list = []
+      value_list = []
       @buckets.each do |list|
         list.size.times do |i|
-          key_list.push(list.at(i)[1])
+          value_list.push(list.at(i)[1])
         end
       end
-      key_list
+      value_list
+    end
+
+    def entries
+      entry_list = []
+      @buckets.each do |list|
+        list.size.times do |i|
+          entry_list.push(list.at(i))
+        end
+      end
+      entry_list
     end
 
     def clear
