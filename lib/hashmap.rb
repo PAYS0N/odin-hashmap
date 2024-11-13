@@ -33,6 +33,13 @@ module OdinHashmap
       list.append([key, value])
     end
 
+    def get(key)
+      hash_v = hash(key)
+      list = @buckets[hash_v]
+      index = list.find_key(key)
+      index.nil? ? nil : list.at(index)[1]
+    end
+
     def resize
       puts "resize unimplemented"
     end
