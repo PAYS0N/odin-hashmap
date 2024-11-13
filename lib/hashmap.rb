@@ -6,7 +6,7 @@ module OdinHashmap
   # string hashmap implementation
   class Hashmap
     def initialize
-      @max_load_factor = 0.8
+      @load_factor = 0.8
       @entries = 0
       @capacity = 16
       create_buckets(@capacity)
@@ -24,9 +24,17 @@ module OdinHashmap
     end
 
     def set(key, value)
-      hash_v = hash(key)
-      @buckets[hash_v].append([key, value])
       @entries += 1
+      resize if @entries > @capacity * @load_factor
+      hash_v = hash(key)
+      list = @buckets[hash_v]
+      index = list.find_key(key)
+      list.remove_at(index) unless index.nil?
+      list.append([key, value])
+    end
+
+    def resize
+      puts "resize unimplemented"
     end
 
     def display

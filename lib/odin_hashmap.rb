@@ -7,4 +7,5 @@ hash.set("Hi", "There")
 hash.set("My", "Friend")
 hash.set("erverte", "rand")
 hash.set("erverteev", "rand")
+hash.set("erverte", "ruby")
 hash.display

@@ -20,6 +20,22 @@ module OdinLinkedList
       @size += 1
     end
 
+    def prepend(val)
+      @head.next = OdinLinkedList::Node.new(val, @head.next)
+      @size += 1
+    end
+
+    def at(index)
+      return nil if index.negative?
+      return nil unless index < size
+
+      curr = @head
+      (index + 1).times do
+        curr = curr.next
+      end
+      curr.val
+    end
+
     def pop
       return if @size.zero?
 
@@ -30,18 +46,61 @@ module OdinLinkedList
       @size -= 1
     end
 
-    def find(val)
+    def shift
+      @head = @head.next
+      @head.val = nil
+    end
+
+    def contains?(val)
       curr = @head
-      i = -1
       until curr.next.nil?
-        return val[1] if curr.val == val[0]
+        return true if curr.val == val
+
+        curr = curr.next
+      end
+      return true if curr.val == val
+
+      false
+    end
+
+    def find_key(val)
+      return nil if @size < 1
+
+      curr = @head.next
+      i = 0
+      until curr.next.nil?
+        return i if curr.val[0] == val
 
         curr = curr.next
         i += 1
       end
-      return val[1] if curr.val == val[0]
+      return i if curr.val[0] == val
 
       nil
+    end
+
+    def insert_at(val, index)
+      if index.zero?
+        prepend(val)
+      elsif index == (size + 1)
+        append(val)
+      elsif index.between?(0, size + 1)
+        insert_at_helper(val, index)
+      else
+        puts "error enter valid index"
+      end
+    end
+
+    def remove_at(index)
+      if index.zero?
+        shift
+      elsif index == (size)
+        pop
+      elsif index.between?(0, size)
+        remove_at_helper(index)
+      else
+        puts "error enter valid index"
+      end
     end
 
     def display
@@ -57,6 +116,24 @@ module OdinLinkedList
       end
       arr << "(#{curr.val}) -> nil"
       arr.join
+    end
+
+    private
+
+    def insert_at_helper(val, index)
+      curr = @head
+      index.times do
+        curr = curr.next
+      end
+      curr.next = OdinLinkedList::Node.new(val, curr.next)
+    end
+
+    def remove_at_helper(index)
+      curr = @head
+      index.times do
+        curr = curr.next
+      end
+      curr.next = curr.next.next
     end
   end
 end
