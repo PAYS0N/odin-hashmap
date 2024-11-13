@@ -25,4 +25,22 @@ puts "Remove: \"hihi\" returns #{hash.remove('hihi')}"
 hash.display
 puts hash.length
 hash.clear
+hash.set("Hi", "There")
+hash.set("My", "Friend")
+hash.set("erverte", "rand")
+hash.set("erverteev", "rand")
+hash.set("erverte", "ruby")
+hash.set("This is ", "here")
+hash.set("apple", "red")
+hash.set("banana", "yellow")
+hash.set("carrot", "orange")
+hash.set("dog", "brown")
+hash.set("elephant", "gray")
+hash.set("frog", "green")
+hash.set("grape", "purple")
+hash.set("hat", "black")
+hash.set("ice cream", "white")
+hash.set("jacket", "blue")
+hash.set("kite", "pink")
+hash.set("lion", "golden")
 hash.display

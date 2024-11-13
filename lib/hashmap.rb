@@ -15,7 +15,7 @@ module OdinHashmap
     end
 
     def hash(key)
-      key.chars.reduce(0) { |acc, char| ((83 * acc) + char.ord) % @capacity }
+      key.chars.reduce(0) { |acc, char| ((83 * acc) + (7 * char.ord)) % @capacity }
     end
 
     def create_buckets(num)
@@ -26,8 +26,6 @@ module OdinHashmap
     end
 
     def set(key, value)
-      @length += 1
-      resize if @length > @capacity * @load_factor
       hash_v = hash(key)
       list = @buckets[hash_v]
       index = list.find_key(key)
@@ -35,6 +33,8 @@ module OdinHashmap
         list.remove_at(index)
         @length -= 1
       end
+      @length += 1
+      resize if @length > @capacity * @load_factor
       list.append([key, value])
     end
 
@@ -96,11 +96,17 @@ module OdinHashmap
     end
 
     def clear
-      initialize
+      @length = 0
+      create_buckets(@capacity)
     end
 
     def resize
-      puts "resize unimplemented"
+      curr_entries = entries
+      @capacity *= 2
+      clear
+      curr_entries.each do |key, value|
+        set(key, value)
+      end
     end
 
     def display
