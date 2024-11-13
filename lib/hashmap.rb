@@ -29,7 +29,10 @@ module OdinHashmap
       hash_v = hash(key)
       list = @buckets[hash_v]
       index = list.find_key(key)
-      list.remove_at(index) unless index.nil?
+      unless index.nil?
+        list.remove_at(index)
+        @entries -= 1
+      end
       list.append([key, value])
     end
 
@@ -45,6 +48,19 @@ module OdinHashmap
       list = @buckets[hash_v]
       index = list.find_key(key)
       !index.nil?
+    end
+
+    def remove(key)
+      hash_v = hash(key)
+      list = @buckets[hash_v]
+      index = list.find_key(key)
+      unless index.nil?
+        val = list.at(index)[1]
+        list.remove_at(index)
+        @entries -= 1
+        return val
+      end
+      nil
     end
 
     def resize
