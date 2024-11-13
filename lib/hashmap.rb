@@ -40,6 +40,13 @@ module OdinHashmap
       index.nil? ? nil : list.at(index)[1]
     end
 
+    def has?(key)
+      hash_v = hash(key)
+      list = @buckets[hash_v]
+      index = list.find_key(key)
+      !index.nil?
+    end
+
     def resize
       puts "resize unimplemented"
     end

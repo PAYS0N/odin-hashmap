@@ -13,3 +13,7 @@ hash.display
 puts "Key: \"Hi\" returns #{hash.get('Hi')}"
 puts "Key: \"My\" returns #{hash.get('My')}"
 puts "Key: \"erverteev\" returns #{hash.get('erverteev')}"
+puts "Key: \"hihi\" returns #{hash.get('hihi')}"
+puts "Has: \"My\" returns #{hash.has?('My')}"
+puts "Has: \"erverteev\" returns #{hash.has?('erverteev')}"
+puts "Has: \"hihi\" returns #{hash.has?('hihi')}"
